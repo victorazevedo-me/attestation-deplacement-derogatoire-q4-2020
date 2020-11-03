@@ -145,6 +145,17 @@ p {
     margin-right: auto;
 }
 
+#form-profile {
+    max-height: 2000px;
+}
+
+.wrapper.saved #form-profile {
+    margin: 0;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+
 #form-profile .form-radio .form-check {
     margin-bottom: 1rem;
 }
@@ -349,15 +360,11 @@ input[type='number'] {
 
 .btn-attestation {
     padding: 0.9em;
+    margin: 0.6em;
     font-size: 1.2em;
     font-weight: bold;
     color: white;
-    background-color: #000191;
     border-radius: 0.5em;
-}
-
-.btn-attestation:hover {
-    background-color: #3031c1;
 }
 
 .github {

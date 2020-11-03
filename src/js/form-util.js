@@ -133,18 +133,18 @@ export function prepareInputs(
     })
 
     $('#saveform-btn').addEventListener('click', async (event) => {
-        const saveformbtn = $('#saveform-btn')
-        const isSaved = saveformbtn.classList.contains('saved')
+        const formwrapper = $('main .wrapper')
+        const isSaved = formwrapper.classList.contains('saved')
 
-        localStorage.profileInfos = isSaved
-            ? ''
-            : JSON.stringify(getProfile(formInputs))
-
-        event.target.innerHTML = isSaved
-            ? '💾 Sauvegarder mes informations'
-            : '🚫 Supprimer mes informations'
-
-        saveformbtn.classList.toggle('saved')
+        if (isSaved) {
+            localStorage.removeItem('profileInfos')
+            event.target.innerHTML = '💾 Sauvegarder mes informations'
+            formwrapper.classList.remove('saved')
+        } else {
+            localStorage.profileInfos = JSON.stringify(getProfile(formInputs))
+            event.target.innerHTML = '✨ Modifier mes informations'
+            formwrapper.classList.add('saved')
+        }
     })
 
     $('#generate-btn').addEventListener('click', async (event) => {

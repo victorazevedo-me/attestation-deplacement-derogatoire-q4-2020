@@ -78,11 +78,18 @@ const createFormGroup = ({
 
     if (name === 'heuresortie') {
         input.value = getCurrentTime()
+    } else {
+        if (localStorage.profileInfos) {
+            try {
+                const savedInfos = JSON.parse(localStorage.profileInfos)
+                input.value = savedInfos[name]
+            } catch (e) {
+                console.warn(e)
+            }
+        }
     }
 
-    const validityAttrs = {
-        className: 'validity',
-    }
+    const validityAttrs = { className: 'validity' }
     const validity = createElement('span', validityAttrs)
 
     const appendToFormGroup = appendTo(formGroup)
@@ -164,10 +171,18 @@ const createReasonFieldset = (reasonsData) => {
 }
 
 export function createForm() {
+    const wrapper = $('main .wrapper')
     const form = $('#form-profile')
+
     // Évite de recréer le formulaire s'il est déjà créé par react-snap (ou un autre outil de prerender)
     if (form.innerHTML !== '') {
         return
+    }
+
+    // Réduit le formulaire si les infos sont déjà sauvegardé
+    if (localStorage.profileInfos) {
+        wrapper.classList.add('saved')
+        $('#saveform-btn span').innerHTML = '✨ Modifier mes informations'
     }
 
     const appendToForm = appendTo(form)
