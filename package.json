@@ -1,7 +1,7 @@
 {
-  "name": "attestation-derogatoire-de-deplacement",
-  "version": "1.0.6",
-  "description": "Générateur d'attestation de déplacement dérogatoire",
+  "name": "attestation-de-deplacement-automatique",
+  "version": "1.0",
+  "description": "Générateur d'attestation de déplacement automatique",
   "main": "certificate.js",
   "scripts": {
     "lint": "eslint src/**/*.js",
@@ -24,13 +24,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lab-mi/attestation-deplacement-derogatoire-q4-2020"
+    "url": "git+https://github.com/victorazevedo-me/attestation-deplacement-automatique"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lab-mi/attestation-deplacement-derogatoire-q4-2020/issues"
+    "url": "https://github.com/victorazevedo-me/attestation-deplacement-automatique/issues"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
@@ -83,7 +83,7 @@
     "globPatterns": [
       "**/*.{html,js,css,jpg,png,pdf,svg,eot,ttf,woff,woff2}"
     ],
-    "disablePlugin": false,
+    "disablePlugin": true,
     "inDev": true,
     "strategy": "default",
     "clearDist": false,
