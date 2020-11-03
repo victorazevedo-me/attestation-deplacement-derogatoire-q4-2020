@@ -109,6 +109,7 @@ const createReasonField = (reasonData) => {
         name: 'field-reason',
         value: reasonData.code,
     }
+
     const inputReason = createElement('input', inputReasonAttrs)
 
     const labelAttrs = {
@@ -117,6 +118,11 @@ const createReasonField = (reasonData) => {
         for: id,
     }
     const label = createElement('label', labelAttrs)
+
+    //Coche la sortie d'une heure par defaut
+    if (reasonData.code === 'sport_animaux') {
+        inputReason.checked = true
+    }
 
     appendToReason([inputReason, label])
     return formReason
