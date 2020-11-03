@@ -1,6 +1,6 @@
 {
   "name": "attestation-de-deplacement-automatique",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Générateur d'attestation de déplacement automatique",
   "main": "certificate.js",
   "scripts": {
