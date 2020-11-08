@@ -4,6 +4,7 @@ import { $, $$, downloadBlob } from './dom-utils'
 import { addSlash, getFormattedDate } from './util'
 import pdfBase from '../certificate.pdf'
 import { generatePdf } from './pdf-util'
+import SecureLS from 'secure-ls'
 
 const secureLS = new SecureLS({ encodingType: 'aes' })
 const conditions = {
@@ -56,18 +57,7 @@ function validateAriaFields() {
         .includes(true)
 }
 
-export function setReleaseDateTime(releaseDateInput) {
-    const loadedDate = new Date()
-    releaseDateInput.value = getFormattedDate(loadedDate)
-}
-export function toAscii(string) {
-    if (typeof string !== 'string') {
-        throw new Error('Need string')
-    }
-    const accentsRemoved = removeAccents(string)
-    const asciiString = accentsRemoved.replace(/[^\x00-\x7F]/g, '') // eslint-disable-line no-control-regex
-    return asciiString
-}
+
 export function getProfile(formInputs) {
     const fields = {}
     for (const field of formInputs) {
