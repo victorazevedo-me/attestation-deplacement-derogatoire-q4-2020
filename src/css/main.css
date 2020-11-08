@@ -365,6 +365,9 @@ input[type='number'] {
     font-weight: bold;
     color: white;
     border-radius: 0.5em;
+
+    opacity: 0;
+    transition: opacity 0.1s;
 }
 
 .github {

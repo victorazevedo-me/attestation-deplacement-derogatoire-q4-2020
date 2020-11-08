@@ -4,7 +4,7 @@ import '../css/main.css'
 
 import formData from '../form-data.json'
 
-import { $, appendTo, createElement } from './dom-utils'
+import { $, $$, appendTo, createElement } from './dom-utils'
 
 const createTitle = () => {
     const h2 = createElement('h2', {
@@ -116,13 +116,8 @@ const createReasonField = (reasonData) => {
         for: id,
     }
     const label = createElement('label', labelAttrs)
-
-    //Coche la sortie d'une heure par defaut
-    if (reasonData.code === 'sport_animaux') {
-        inputReason.checked = true
-    }
-
     appendToReason([inputReason, label])
+
     return formReason
 }
 
@@ -174,6 +169,9 @@ export function createForm() {
     if (localStorage.profileInfos) {
         wrapper.classList.add('saved')
         $('#saveform-btn span').innerHTML = '✨ Modifier mes informations'
+        $$('.btn-attestation').forEach((b) =>
+            b.setAttribute('style', 'opacity: 1')
+        )
     }
 
     const appendToForm = appendTo(form)

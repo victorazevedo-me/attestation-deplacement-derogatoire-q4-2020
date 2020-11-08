@@ -1,5 +1,4 @@
 import removeAccents from 'remove-accents'
-import SecureLS from 'secure-ls'
 import { $, $$, downloadBlob } from './dom-utils'
 import { addSlash, getFormattedDate } from './util'
 import pdfBase from '../certificate.pdf'
@@ -57,6 +56,18 @@ function validateAriaFields() {
         .includes(true)
 }
 
+export function setReleaseDateTime(releaseDateInput) {
+    const loadedDate = new Date()
+    releaseDateInput.value = getFormattedDate(loadedDate)
+}
+export function toAscii(string) {
+    if (typeof string !== 'string') {
+        throw new Error('Need string')
+    }
+    const accentsRemoved = removeAccents(string)
+    const asciiString = accentsRemoved.replace(/[^\x00-\x7F]/g, '') // eslint-disable-line no-control-regex
+    return asciiString
+}
 
 export function getProfile(formInputs) {
     const fields = {}
@@ -69,8 +80,13 @@ export function getProfile(formInputs) {
         if (typeof value === 'string') {
             value = toAscii(value)
         }
+        if (field.type === 'checkbox') {
+            value = field.checked
+        }
         fields[field.id.substring('field-'.length)] = value
     }
+
+    console.log(fields)
     return fields
 }
 
@@ -89,33 +105,20 @@ export function prepareInputs(
     reasonAlert,
     snackbar
 ) {
+    const lsProfile = secureLS.get('profileInfos')
     formInputs.forEach((input) => {
-        const lsProfile = secureLS.get('profileInfos')
-        formInputs.forEach((input) => {
-            if (
-                input.name &&
-                lsProfile &&
-                input.name !== 'datesortie' &&
-                input.name !== 'heuresortie' &&
-                input.name !== 'field-reason'
-            ) {
-                input.value = lsProfile[input.name]
+        if (
+            input.name &&
+            lsProfile &&
+            input.name !== 'datesortie' &&
+            input.name !== 'heuresortie' &&
+            input.name !== 'field-reason'
+        ) {
+            input.value = lsProfile[input.name]
+        } else if (input.name === 'field-reason') {
+            if (lsProfile['ox-' + input.value]) {
+                input.checked = true
             }
-        })
-
-        const exempleElt = input.parentNode.parentNode.querySelector('.exemple')
-        const validitySpan = input.parentNode.parentNode.querySelector(
-            '.validity'
-        )
-        if (input.placeholder && exempleElt) {
-            input.addEventListener('input', (event) => {
-                if (input.value) {
-                    exempleElt.innerHTML = 'ex.&nbsp;: ' + input.placeholder
-                    validitySpan.removeAttribute('hidden')
-                } else {
-                    exempleElt.innerHTML = ''
-                }
-            })
         }
     })
 
