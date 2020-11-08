@@ -1,10 +1,11 @@
 import removeAccents from 'remove-accents'
-
+import SecureLS from 'secure-ls'
 import { $, $$, downloadBlob } from './dom-utils'
 import { addSlash, getFormattedDate } from './util'
 import pdfBase from '../certificate.pdf'
 import { generatePdf } from './pdf-util'
 
+const secureLS = new SecureLS({ encodingType: 'aes' })
 const conditions = {
     '#field-firstname': {
         length: 1,
@@ -99,6 +100,19 @@ export function prepareInputs(
     snackbar
 ) {
     formInputs.forEach((input) => {
+        const lsProfile = secureLS.get('profileInfos')
+        formInputs.forEach((input) => {
+            if (
+                input.name &&
+                lsProfile &&
+                input.name !== 'datesortie' &&
+                input.name !== 'heuresortie' &&
+                input.name !== 'field-reason'
+            ) {
+                input.value = lsProfile[input.name]
+            }
+        })
+
         const exempleElt = input.parentNode.parentNode.querySelector('.exemple')
         const validitySpan = input.parentNode.parentNode.querySelector(
             '.validity'
@@ -133,17 +147,16 @@ export function prepareInputs(
     })
 
     $('#saveform-btn').addEventListener('click', async (event) => {
-        const formwrapper = $('main .wrapper')
-        const isSaved = formwrapper.classList.contains('saved')
+        const wrapperCl = $('main .wrapper').classList
+        const isSaved = wrapperCl.contains('saved')
 
         if (isSaved) {
-            localStorage.removeItem('profileInfos')
             event.target.innerHTML = '💾 Sauvegarder mes informations'
-            formwrapper.classList.remove('saved')
+            wrapperCl.remove('saved')
         } else {
-            localStorage.profileInfos = JSON.stringify(getProfile(formInputs))
+            secureLS.set('profileInfos', getProfile(formInputs))
             event.target.innerHTML = '✨ Modifier mes informations'
-            formwrapper.classList.add('saved')
+            wrapperCl.add('saved')
         }
     })
 

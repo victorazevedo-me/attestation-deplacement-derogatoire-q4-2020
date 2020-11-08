@@ -78,15 +78,6 @@ const createFormGroup = ({
 
     if (name === 'heuresortie') {
         input.value = getCurrentTime()
-    } else {
-        if (localStorage.profileInfos) {
-            try {
-                const savedInfos = JSON.parse(localStorage.profileInfos)
-                input.value = savedInfos[name]
-            } catch (e) {
-                console.warn(e)
-            }
-        }
     }
 
     const validityAttrs = { className: 'validity' }
