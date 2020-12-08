@@ -17,14 +17,10 @@ const createTitle = () => {
     })
     return [h2, p]
 }
-// createElement('div', { className: 'form-group' })
 
 const getCurrentTime = () => {
     const nowdate = new Date()
-
-    //entre 15 et 40 minutes aleatoire
-    const randomMinute = Math.floor(Math.random() * 25) + 15
-    const spoofdate = new Date(nowdate.getTime() - 60000 * randomMinute)
+    const spoofdate = new Date(nowdate.getTime() - 60000 * 25) //
 
     return spoofdate.toLocaleTimeString('fr-FR', {
         hour: '2-digit',
@@ -74,14 +70,14 @@ const createFormGroup = ({
         type,
     }
 
-    const input = createElement('input', inputAttrs)
-
     if (name === 'heuresortie') {
         input.value = getCurrentTime()
     }
 
-    const validityAttrs = { className: 'validity' }
+    const input = createElement('input', inputAttrs)
+    const validityAttrs = {className: 'validity',}
     const validity = createElement('span', validityAttrs)
+    const example = createElement('p', { className: 'exemple  basis-100' })
 
     const appendToFormGroup = appendTo(formGroup)
     appendToFormGroup(labelEl)
@@ -90,6 +86,7 @@ const createFormGroup = ({
     const appendToInputGroup = appendTo(inputGroup)
     appendToInputGroup(input)
     appendToInputGroup(validity)
+    appendToInputGroup(example)
 
     return formGroup
 }
