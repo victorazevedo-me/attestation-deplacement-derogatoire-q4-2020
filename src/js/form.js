@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../css/main.css'
 
 import formData from '../form-data.json'
-
+import { spoofTime, getFormattedDate } from './util'
 import { $, $$, appendTo, createElement } from './dom-utils'
 
 const createTitle = () => {
@@ -17,14 +17,6 @@ const createTitle = () => {
     })
     return [h2, p]
 }
-
-const getCurrentTime = () => (
-    new Date(new Date().getTime() - 15*(10**5)) //-25min
-    .toLocaleTimeString('fr-FR', {
-        hour: '2-digit',
-        minute: '2-digit',
-    })
-)
 
 const createFormGroup = ({
     autocomplete = false,
@@ -73,8 +65,14 @@ const createFormGroup = ({
     const validity = createElement('span', validityAttrs)
 
     if (name === 'heuresortie') {
-        input.value = getCurrentTime()
         formGroup.classList.add('heuresortie')
+        input.value = spoofTime().toLocaleTimeString('fr-FR', {
+            hour: '2-digit',
+            minute: '2-digit',
+        })
+    }
+    else if (name === 'datesortie') {
+        input.value = getFormattedDate(spoofTime())
     }
     
     const appendToFormGroup = appendTo(formGroup)

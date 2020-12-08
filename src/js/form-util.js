@@ -1,6 +1,6 @@
 import removeAccents from 'remove-accents'
 import { $, $$, downloadBlob } from './dom-utils'
-import { addSlash, getFormattedDate } from './util'
+import { addSlash, spoofTime, getFormattedDate } from './util'
 import pdfBase from '../certificate.pdf'
 import { generatePdf } from './pdf-util'
 import SecureLS from 'secure-ls'
@@ -56,10 +56,6 @@ function validateAriaFields() {
         .includes(true)
 }
 
-export function setReleaseDateTime(releaseDateInput) {
-    const loadedDate = new Date()
-    releaseDateInput.value = getFormattedDate(loadedDate)
-}
 export function toAscii(string) {
     if (typeof string !== 'string') {
         throw new Error('Need string')
@@ -72,11 +68,9 @@ export function toAscii(string) {
 export function getProfile(formInputs) {
     const fields = {}
     for (const field of formInputs) {
+
         let value = field.value
-        if (field.id === 'field-datesortie') {
-            const dateSortie = field.value.split('-')
-            value = `${dateSortie[2]}/${dateSortie[1]}/${dateSortie[0]}`
-        }
+
         if (typeof value === 'string') {
             value = toAscii(value)
         }
@@ -86,7 +80,6 @@ export function getProfile(formInputs) {
         fields[field.id.substring('field-'.length)] = value
     }
 
-    console.log(fields)
     return fields
 }
 
@@ -173,12 +166,19 @@ export function prepareInputs(
             pdfBase
         )
 
-        const creationInstant = new Date()
-        const creationDate = creationInstant.toLocaleDateString('fr-CA')
+        const spoofedDate = spoofTime().toLocaleDateString('fr-CA')
         const spoofedHeure = formInputs[8].value.replace(':', '-')
 
-        downloadBlob(pdfBlob, `attestation-${creationDate}_${spoofedHeure}.pdf`)
+        downloadBlob(pdfBlob, `attestation-${spoofedDate}_${spoofedHeure}.pdf`)
     })
+
+    // $('#field-heuresortie').addEventListener('input', (e) => {
+
+    //     let currDate = new Date()
+    //     let nouvHeure = e.target.value.split(':')
+
+    //     currDate.setHours(currDate.getHours())
+    // })
 }
 
 export function prepareForm() {
@@ -186,8 +186,6 @@ export function prepareForm() {
     const reasonInputs = [...$$('input[name="field-reason"]')]
     const reasonFieldset = $('#reason-fieldset')
     const reasonAlert = reasonFieldset.querySelector('.msg-alert')
-    const releaseDateInput = $('#field-datesortie')
-    setReleaseDateTime(releaseDateInput)
     prepareInputs(
         formInputs,
         reasonInputs,
