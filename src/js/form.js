@@ -18,15 +18,13 @@ const createTitle = () => {
     return [h2, p]
 }
 
-const getCurrentTime = () => {
-    const now = new Date()
-
-    return new Date(now.getTime() - 15*(10**5)) //25min
-        .toLocaleTimeString('fr-FR', {
-            hour: '2-digit',
-            minute: '2-digit',
-        })
-}
+const getCurrentTime = () => (
+    new Date(new Date().getTime() - 15*(10**5)) //-25min
+    .toLocaleTimeString('fr-FR', {
+        hour: '2-digit',
+        minute: '2-digit',
+    })
+)
 
 const createFormGroup = ({
     autocomplete = false,

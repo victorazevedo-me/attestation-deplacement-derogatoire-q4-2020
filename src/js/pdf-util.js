@@ -14,8 +14,9 @@ const ys = {
 }
 
 export async function generatePdf (profile, reasons, pdfBase) {
-  const creationInstant = new Date()
-  const creationDate = creationInstant.toLocaleDateString('fr-FR')
+
+  const {jour, mois, annee} = profile.datesortie.split('/')
+  const creationDate = new Date(annee, mois - 1, jour).toLocaleDateString('fr-FR')
   const creationHour = profile.heuresortie.replace(':', 'h')
 
   const {
