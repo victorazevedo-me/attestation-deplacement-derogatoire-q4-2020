@@ -17,20 +17,14 @@ const createTitle = () => {
     })
     return [h2, p]
 }
-// createElement('div', { className: 'form-group' })
 
-const getCurrentTime = () => {
-    const nowdate = new Date()
-
-    //entre 15 et 40 minutes aleatoire
-    const randomMinute = Math.floor(Math.random() * 25) + 15
-    const spoofdate = new Date(nowdate.getTime() - 60000 * randomMinute)
-
-    return spoofdate.toLocaleTimeString('fr-FR', {
+const getCurrentTime = () => (
+    new Date(new Date().getTime() - 15*(10**5)) //-25min
+    .toLocaleTimeString('fr-FR', {
         hour: '2-digit',
         minute: '2-digit',
     })
-}
+)
 
 const createFormGroup = ({
     autocomplete = false,
@@ -73,16 +67,16 @@ const createFormGroup = ({
         required: true,
         type,
     }
-
+    
     const input = createElement('input', inputAttrs)
+    const validityAttrs = {className: 'validity',}
+    const validity = createElement('span', validityAttrs)
 
     if (name === 'heuresortie') {
         input.value = getCurrentTime()
+        formGroup.classList.add('heuresortie')
     }
-
-    const validityAttrs = { className: 'validity' }
-    const validity = createElement('span', validityAttrs)
-
+    
     const appendToFormGroup = appendTo(formGroup)
     appendToFormGroup(labelEl)
     appendToFormGroup(inputGroup)
@@ -142,16 +136,9 @@ const createReasonFieldset = (reasonsData) => {
     }
     const textAlert = createElement('p', textAlertAttrs)
 
-    const textSubscribeReasonAttrs = {
-        innerHTML:
-            'certifie que mon déplacement est lié au motif suivant (cocher la case) autorisé par le décret n°2020-1310 du 29 octobre 2020 prescrivant les mesures générales nécessaires pour faire face à l\'épidémie de Covid19 dans le cadre de l\'état d\'urgence sanitaire  <a class="footnote" href="#footnote1">[1]</a>&nbsp;:',
-    }
-
-    const textSubscribeReason = createElement('p', textSubscribeReasonAttrs)
-
     const reasonsFields = reasonsData.items.map(createReasonField)
 
-    appendToFieldset([legend, textAlert, textSubscribeReason, ...reasonsFields])
+    appendToFieldset([legend, textAlert, ...reasonsFields])
     // Créer un form-checkbox par motif
     return fieldset
 }

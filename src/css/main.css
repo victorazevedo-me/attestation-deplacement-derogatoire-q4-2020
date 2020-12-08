@@ -145,16 +145,13 @@ p {
     margin-right: auto;
 }
 
-#form-profile {
-    max-height: 2000px;
+.wrapper.saved h2,
+.wrapper.saved .msg-info,
+.wrapper.saved .fieldset,   
+.wrapper.saved .form-group:not(.heuresortie) {
+    display: none;
 }
 
-.wrapper.saved #form-profile {
-    margin: 0;
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-}
 
 #form-profile .form-radio .form-check {
     margin-bottom: 1rem;
@@ -272,20 +269,16 @@ input[type='number'] {
     display: none !important;
 }
 
-.exemple {
-    margin-top: 0.2em;
-    font-style: italic;
-    color: #999999;
-    height: 1em;
-}
-
 header {
     display: flex;
     align-items: center;
+    justify-content: center;
+    padding: .5em;
 }
 
 .logo {
-    height: 8em;
+    height: 30vw;
+    max-height: 10em;
 }
 
 .covid-title {
@@ -374,6 +367,11 @@ header {
 
     opacity: 0;
     transition: opacity 0.1s;
+}
+
+.btn-clear-data {
+    margin: 30px auto;
+    max-width: 400px;
 }
 
 .github {
@@ -600,25 +598,25 @@ em {
     }
 }
 
-#snackbar {
-    min-width: 250px;
-    color: #fff;
-    text-align: center;
-    border-radius: 3px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1;
-    left: 50%;
-    bottom: 30px;
-    font-size: 17px;
-    transform: translateX(-50%);
-    box-shadow: 0 0 8px 1px #fff;
-    opacity: 0;
-    transition: all 0.5s ease-in-out;
+#snackbar, #snackbar-cleardata {
+  min-width: 250px;
+  color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px 1px #fff;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
 }
 
-#snackbar.show {
-    opacity: 1;
+#snackbar.show, #snackbar-cleardata.show {
+  opacity: 1;
 }
 
 @media only screen and (min-width: 600px) {
@@ -663,24 +661,20 @@ em {
     border-color: #caf8ff;
 }
 
+.basis-100 {
+  flex-basis: 100%;
+}
+
 .btn-info {
     color: #fff;
     background-color: #030494;
     border-color: #030494;
 }
 
-.fieldset {
-    margin-left: -1.25em;
-    margin-right: -1.25em;
-    padding-left: 1.25em;
-    padding-right: 1.25em;
-    border: 3px solid transparent;
+.fieldset .legend {
+    padding: 1em 0;
 }
 
-.legend {
-    padding-left: 0.5em;
-}
-
-.fieldset-error {
-    border: 3px solid red;
+.fieldset .form-checkbox {
+    padding-left: 1.35em;
 }
