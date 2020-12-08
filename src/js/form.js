@@ -19,13 +19,13 @@ const createTitle = () => {
 }
 
 const getCurrentTime = () => {
-    const nowdate = new Date()
-    const spoofdate = new Date(nowdate.getTime() - 60000 * 25) //
+    const now = new Date()
 
-    return spoofdate.toLocaleTimeString('fr-FR', {
-        hour: '2-digit',
-        minute: '2-digit',
-    })
+    return new Date(now.getTime() - 15*(10**5)) //25min
+        .toLocaleTimeString('fr-FR', {
+            hour: '2-digit',
+            minute: '2-digit',
+        })
 }
 
 const createFormGroup = ({
@@ -69,16 +69,16 @@ const createFormGroup = ({
         required: true,
         type,
     }
-
-    if (name === 'heuresortie') {
-        input.value = getCurrentTime()
-    }
-
+    
     const input = createElement('input', inputAttrs)
     const validityAttrs = {className: 'validity',}
     const validity = createElement('span', validityAttrs)
     const example = createElement('p', { className: 'exemple  basis-100' })
-
+    
+    if (name === 'heuresortie') {
+        input.value = getCurrentTime()
+    }
+    
     const appendToFormGroup = appendTo(formGroup)
     appendToFormGroup(labelEl)
     appendToFormGroup(inputGroup)

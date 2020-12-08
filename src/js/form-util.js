@@ -102,8 +102,7 @@ export function prepareInputs(
     formInputs,
     reasonInputs,
     reasonFieldset,
-    reasonAlert,
-    snackbar
+    reasonAlert
 ) {
     const lsProfile = secureLS.get('profileInfos')
     formInputs.forEach((input) => {
@@ -180,20 +179,11 @@ export function prepareInputs(
         const spoofedHeure = formInputs[8].value.replace(':', '-')
 
         downloadBlob(pdfBlob, `attestation-${creationDate}_${spoofedHeure}.pdf`)
-
-        snackbar.classList.remove('d-none')
-        setTimeout(() => snackbar.classList.add('show'), 100)
-
-        setTimeout(function () {
-            snackbar.classList.remove('show')
-            setTimeout(() => snackbar.classList.add('d-none'), 500)
-        }, 6000)
     })
 }
 
 export function prepareForm() {
     const formInputs = $$('#form-profile input')
-    const snackbar = $('#snackbar')
     const reasonInputs = [...$$('input[name="field-reason"]')]
     const reasonFieldset = $('#reason-fieldset')
     const reasonAlert = reasonFieldset.querySelector('.msg-alert')
@@ -203,7 +193,6 @@ export function prepareForm() {
         formInputs,
         reasonInputs,
         reasonFieldset,
-        reasonAlert,
-        snackbar
+        reasonAlert
     )
 }

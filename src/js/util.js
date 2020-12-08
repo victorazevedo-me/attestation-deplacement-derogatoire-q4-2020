@@ -27,9 +27,3 @@ export function addSlash (str) {
     .replace(/^(\d{2})\/(\d{2})$/g, '$1/$2/')
     .replace(/\/\//g, '/')
 }
-
-export function addVersion (version) {
-  document.getElementById(
-    'version',
-  ).innerHTML = `${new Date().getFullYear()} - ${version}`
-}
