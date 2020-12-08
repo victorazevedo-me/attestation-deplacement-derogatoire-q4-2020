@@ -279,8 +279,13 @@ input[type='number'] {
     height: 1em;
 }
 
+header {
+    display: flex;
+    align-items: center;
+}
+
 .logo {
-    width: 50%;
+    height: 8em;
 }
 
 .covid-title {
@@ -289,6 +294,7 @@ input[type='number'] {
     padding: 0.3em;
     font-family: 'marianne-regular', Arial, Helvetica, sans-serif;
     font-size: 0.5em;
+    width: 100%;
     color: #ffffff;
     background-color: #000191;
 }
