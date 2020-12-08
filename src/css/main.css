@@ -376,6 +376,11 @@ header {
     transition: opacity 0.1s;
 }
 
+.btn-clear-data {
+    margin: 30px auto;
+    max-width: 400px;
+}
+
 .github {
     font-size: 0.7em;
     text-align: center;
@@ -600,25 +605,25 @@ em {
     }
 }
 
-#snackbar {
-    min-width: 250px;
-    color: #fff;
-    text-align: center;
-    border-radius: 3px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1;
-    left: 50%;
-    bottom: 30px;
-    font-size: 17px;
-    transform: translateX(-50%);
-    box-shadow: 0 0 8px 1px #fff;
-    opacity: 0;
-    transition: all 0.5s ease-in-out;
+#snackbar, #snackbar-cleardata {
+  min-width: 250px;
+  color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px 1px #fff;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
 }
 
-#snackbar.show {
-    opacity: 1;
+#snackbar.show, #snackbar-cleardata.show {
+  opacity: 1;
 }
 
 @media only screen and (min-width: 600px) {
@@ -661,6 +666,10 @@ em {
     color: #030494;
     background-color: #caf8ff;
     border-color: #caf8ff;
+}
+
+.basis-100 {
+  flex-basis: 100%;
 }
 
 .btn-info {
