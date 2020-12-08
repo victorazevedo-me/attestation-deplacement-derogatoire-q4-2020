@@ -133,7 +133,6 @@ export function prepareInputs(
     reasonInputs.forEach((radioInput) => {
         radioInput.addEventListener('change', function (event) {
             const isInError = reasonInputs.every((input) => !input.checked)
-            reasonFieldset.classList.toggle('fieldset-error', isInError)
             reasonAlert.classList.toggle('hidden', !isInError)
         })
     })

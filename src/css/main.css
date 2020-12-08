@@ -145,16 +145,13 @@ p {
     margin-right: auto;
 }
 
-#form-profile {
-    max-height: 2000px;
+.wrapper.saved h2,
+.wrapper.saved .msg-info,
+.wrapper.saved .fieldset,   
+.wrapper.saved .form-group:not(.heuresortie) {
+    display: none;
 }
 
-.wrapper.saved #form-profile {
-    margin: 0;
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-}
 
 #form-profile .form-radio .form-check {
     margin-bottom: 1rem;
@@ -272,21 +269,16 @@ input[type='number'] {
     display: none !important;
 }
 
-.exemple {
-    margin-top: 0.2em;
-    font-style: italic;
-    color: #999999;
-    height: 1em;
-}
-
 header {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: .5em;
 }
 
 .logo {
-    height: 8em;
+    height: 30vw;
+    max-height: 10em;
 }
 
 .covid-title {
@@ -679,18 +671,10 @@ em {
     border-color: #030494;
 }
 
-.fieldset {
-    margin-left: -1.25em;
-    margin-right: -1.25em;
-    padding-left: 1.25em;
-    padding-right: 1.25em;
-    border: 3px solid transparent;
+.fieldset .legend {
+    padding: 1em 0;
 }
 
-.legend {
-    padding-left: 0.5em;
-}
-
-.fieldset-error {
-    border: 3px solid red;
+.fieldset .form-checkbox {
+    padding-left: 1.35em;
 }

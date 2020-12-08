@@ -73,10 +73,10 @@ const createFormGroup = ({
     const input = createElement('input', inputAttrs)
     const validityAttrs = {className: 'validity',}
     const validity = createElement('span', validityAttrs)
-    const example = createElement('p', { className: 'exemple  basis-100' })
-    
+
     if (name === 'heuresortie') {
         input.value = getCurrentTime()
+        formGroup.classList.add('heuresortie')
     }
     
     const appendToFormGroup = appendTo(formGroup)
@@ -86,7 +86,6 @@ const createFormGroup = ({
     const appendToInputGroup = appendTo(inputGroup)
     appendToInputGroup(input)
     appendToInputGroup(validity)
-    appendToInputGroup(example)
 
     return formGroup
 }
@@ -139,16 +138,9 @@ const createReasonFieldset = (reasonsData) => {
     }
     const textAlert = createElement('p', textAlertAttrs)
 
-    const textSubscribeReasonAttrs = {
-        innerHTML:
-            'certifie que mon déplacement est lié au motif suivant (cocher la case) autorisé par le décret n°2020-1310 du 29 octobre 2020 prescrivant les mesures générales nécessaires pour faire face à l\'épidémie de Covid19 dans le cadre de l\'état d\'urgence sanitaire  <a class="footnote" href="#footnote1">[1]</a>&nbsp;:',
-    }
-
-    const textSubscribeReason = createElement('p', textSubscribeReasonAttrs)
-
     const reasonsFields = reasonsData.items.map(createReasonField)
 
-    appendToFieldset([legend, textAlert, textSubscribeReason, ...reasonsFields])
+    appendToFieldset([legend, textAlert, ...reasonsFields])
     // Créer un form-checkbox par motif
     return fieldset
 }
