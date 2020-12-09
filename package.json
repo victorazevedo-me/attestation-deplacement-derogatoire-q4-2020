@@ -1,6 +1,6 @@
 {
   "name": "attestation-de-deplacement-automatique",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Générateur d'attestation de déplacement automatique",
   "main": "certificate.js",
   "scripts": {
@@ -58,8 +58,6 @@
     "serve": "^11.3.2"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
-    "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "bootstrap": "^4.5.3",
     "pdf-lib": "^1.11.2",
     "qrcode": "^1.4.4",
