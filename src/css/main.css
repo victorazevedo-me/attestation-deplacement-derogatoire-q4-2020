@@ -147,11 +147,16 @@ p {
 
 .wrapper.saved h2,
 .wrapper.saved .msg-info,
-.wrapper.saved .fieldset,   
+.wrapper.saved .fieldset,
 .wrapper.saved .form-group:not(.heuresortie) {
     display: none;
 }
 
+.heure-warning {
+    display: none;
+    color: red;
+    padding-top: 0.5em;
+}
 
 #form-profile .form-radio .form-check {
     margin-bottom: 1rem;
@@ -273,7 +278,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: .5em;
+    padding: 0.5em;
 }
 
 .logo {
@@ -424,99 +429,6 @@ header {
     }
 }
 
-.main-footer {
-    display: flex;
-    justify-content: center;
-    padding-top: 3em;
-    padding-bottom: 3em;
-    background: #222;
-    color: white;
-}
-
-.footer-links {
-    margin: 0 auto;
-    max-width: 500px;
-    background: #222;
-}
-
-@media (prefers-color-scheme: dark) {
-    .main-footer {
-        background: #444;
-    }
-
-    .footer-links {
-        background: #444;
-    }
-}
-
-.footer-line {
-    display: block;
-    margin: 0.75em;
-    font-size: 0.9em;
-    color: #ffffff;
-}
-
-.footer-link:hover {
-    text-decoration: underline;
-    color: #0a81ff;
-}
-
-.footer-link:focus {
-    color: #ffffff;
-}
-
-.num-08 {
-    font-weight: bold;
-    color: #00a94f;
-}
-
-.num-08:hover {
-    text-decoration: underline;
-    color: #0a81ff;
-}
-
-.stores-link:hover {
-    text-decoration: underline;
-}
-
-.confidentialite .cookies {
-    border-collapse: collapse;
-}
-
-.confidentialite td,
-.confidentialite th {
-    border: 1px solid #000191;
-    padding: 8px;
-}
-
-@media (prefers-color-scheme: dark) {
-    .confidentialite td,
-    .confidentialite th {
-        border-color: #a3a3ff;
-        color: white;
-    }
-}
-
-.confidentialite .header-row {
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #000191;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-.confidentialite .name-col {
-    font-weight: bold;
-    padding: 8px 16px;
-    color: #000191;
-}
-
-@media (prefers-color-scheme: dark) {
-    .confidentialite .name-col {
-        color: #a3a3ff;
-    }
-}
-
 .btn-wrapper {
     display: flex;
     justify-content: center;
@@ -598,27 +510,6 @@ em {
     }
 }
 
-#snackbar, #snackbar-cleardata {
-  min-width: 250px;
-  color: #fff;
-  text-align: center;
-  border-radius: 3px;
-  padding: 16px;
-  position: fixed;
-  z-index: 1;
-  left: 50%;
-  bottom: 30px;
-  font-size: 17px;
-  transform: translateX(-50%);
-  box-shadow: 0 0 8px 1px #fff;
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
-}
-
-#snackbar.show, #snackbar-cleardata.show {
-  opacity: 1;
-}
-
 @media only screen and (min-width: 600px) {
     .hide-on-desktop,
     * [aria-labelledby='hide-on-desktop'] {
@@ -662,7 +553,7 @@ em {
 }
 
 .basis-100 {
-  flex-basis: 100%;
+    flex-basis: 100%;
 }
 
 .btn-info {

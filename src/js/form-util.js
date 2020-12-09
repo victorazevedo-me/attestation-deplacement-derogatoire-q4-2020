@@ -130,6 +130,17 @@ export function prepareInputs(
         }
     })
 
+    //prévient quand l'heure de sortie est entre deux jours
+    $('#field-heuresortie').addEventListener('input', function (event) {
+        const setHeure = parseInt(event.target.value.split(':'))
+        const interval = setHeure > 21 || setHeure < 2
+
+        $('.heure-warning').setAttribute(
+            'style',
+            'display: ' + (interval ? 'block' : 'none')
+        )
+    })
+
     reasonInputs.forEach((radioInput) => {
         radioInput.addEventListener('change', function (event) {
             const isInError = reasonInputs.every((input) => !input.checked)
@@ -188,10 +199,5 @@ export function prepareForm() {
     const reasonAlert = reasonFieldset.querySelector('.msg-alert')
     const releaseDateInput = $('#field-datesortie')
     setReleaseDateTime(releaseDateInput)
-    prepareInputs(
-        formInputs,
-        reasonInputs,
-        reasonFieldset,
-        reasonAlert
-    )
+    prepareInputs(formInputs, reasonInputs, reasonFieldset, reasonAlert)
 }

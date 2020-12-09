@@ -18,13 +18,12 @@ const createTitle = () => {
     return [h2, p]
 }
 
-const getCurrentTime = () => (
-    new Date(new Date().getTime() - 15*(10**5)) //-25min
-    .toLocaleTimeString('fr-FR', {
-        hour: '2-digit',
-        minute: '2-digit',
-    })
-)
+const getCurrentTime = () =>
+    new Date(new Date().getTime() - 15 * 10 ** 5) //-25min
+        .toLocaleTimeString('fr-FR', {
+            hour: '2-digit',
+            minute: '2-digit',
+        })
 
 const createFormGroup = ({
     autocomplete = false,
@@ -67,19 +66,24 @@ const createFormGroup = ({
         required: true,
         type,
     }
-    
+
+    const validityAttrs = { className: 'validity' }
     const input = createElement('input', inputAttrs)
-    const validityAttrs = {className: 'validity',}
     const validity = createElement('span', validityAttrs)
+    let warning = {}
 
     if (name === 'heuresortie') {
+        warning = createElement('small', { className: 'heure-warning' })
+        warning.innerText = 'Attention à la date de sortie !'
+
         input.value = getCurrentTime()
         formGroup.classList.add('heuresortie')
     }
-    
+
     const appendToFormGroup = appendTo(formGroup)
     appendToFormGroup(labelEl)
     appendToFormGroup(inputGroup)
+    if (name === 'heuresortie') appendToFormGroup(warning)
 
     const appendToInputGroup = appendTo(inputGroup)
     appendToInputGroup(input)
