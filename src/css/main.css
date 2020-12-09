@@ -155,7 +155,8 @@ p {
 .heure-warning {
     display: none;
     color: red;
-    padding-top: 0.5em;
+    line-height: 2rem;
+    height: 0;
 }
 
 #form-profile .form-radio .form-check {

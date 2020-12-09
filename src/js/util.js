@@ -1,5 +1,10 @@
 import QRCode from 'qrcode'
 
+export function spoofTime() {
+  const currentTime = new Date()
+  return new Date(currentTime.getTime() - 15*(10**5)) //-25min
+}
+
 export function generateQR (text) {
   const opts = {
     errorCorrectionLevel: 'M',
