@@ -2,11 +2,17 @@
 
 ## Ce qui a été rajouté
 
-- Bouton sauvegarde pour pouvoir générer le formulaire plus rapidement
-- Heure de sortie aléatoire entre 15 et 40 minutes avant l'heure de création 
-- PDF & QR Code correspondent à l'heure de sortie, pas de création
+-   Bouton sauvegarde pour pouvoir générer le formulaire plus rapidement
+-   Champ heure de sortie facilement accessible avec -25 minutes par défaut
+-   PDF & QR Code correspondent à l'heure & date de sortie, pas de création
+-   La date réduit d'un jour si l'heure automatique passe de 00h à 23h
+-   Avertissement "Attention à la date de sortie !" pendant la nuit
 
-🤯 Attention ! A ne pas utiliser autour de minuit, la date pourrait être fausse 🤯
+## Ce qui a été modifié
+
+-   Raisons de sortie raccourcis
+-   Texte légal & anticovid supprimé
+-   Page visuellement allégé
 
 ## Développer
 
@@ -17,12 +23,6 @@ git clone https://github.com/victorazevedo-me/attestation-deplacement-automatiqu
 cd attestation-deplacement-automatique
 npm i
 npm start
-```
-
-### Générer le code de production pour tester que le build fonctionne en entier
-
-```console
-npm run build:dev
 ```
 
 ### Tester le code de production en local
@@ -44,4 +44,3 @@ service :
 -   [PDF-LIB](https://pdf-lib.js.org/)
 -   [qrcode](https://github.com/soldair/node-qrcode)
 -   [Bootstrap](https://getbootstrap.com/)
--   [Font Awesome](https://fontawesome.com/license)

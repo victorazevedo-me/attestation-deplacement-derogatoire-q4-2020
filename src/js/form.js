@@ -4,19 +4,7 @@ import '../css/main.css'
 
 import formData from '../form-data.json'
 import { spoofTime, getFormattedDate } from './util'
-import { $, $$, appendTo, createElement } from './dom-utils'
-
-const createTitle = () => {
-    const h2 = createElement('h2', {
-        className: 'titre-2',
-        innerHTML: 'Remplissez en ligne votre déclaration numérique : ',
-    })
-    const p = createElement('p', {
-        className: 'msg-info',
-        innerHTML: 'Tous les champs sont obligatoires.',
-    })
-    return [h2, p]
-}
+import { $, appendTo, createElement } from './dom-utils'
 
 const createFormGroup = ({
     autocomplete = false,
@@ -126,12 +114,6 @@ const createReasonFieldset = (reasonsData) => {
     const fieldset = createElement('fieldset', fieldsetAttrs)
     const appendToFieldset = appendTo(fieldset)
 
-    const legendAttrs = {
-        className: 'legend titre-3',
-        innerHTML: 'Choisissez un motif de déplacement',
-    }
-    const legend = createElement('legend', legendAttrs)
-
     const textAlertAttrs = {
         className: 'msg-alert hidden',
         innerHTML: 'Veuillez choisir un motif',
@@ -140,7 +122,7 @@ const createReasonFieldset = (reasonsData) => {
 
     const reasonsFields = reasonsData.items.map(createReasonField)
 
-    appendToFieldset([legend, textAlert, ...reasonsFields])
+    appendToFieldset([textAlert, ...reasonsFields])
     // Créer un form-checkbox par motif
     return fieldset
 }
@@ -158,9 +140,6 @@ export function createForm() {
     if (localStorage.profileInfos) {
         wrapper.classList.add('saved')
         $('#saveform-btn span').innerHTML = '✨ Modifier mes informations'
-        $$('.btn-attestation').forEach((b) =>
-            b.setAttribute('style', 'opacity: 1')
-        )
     }
 
     const appendToForm = appendTo(form)
@@ -182,5 +161,5 @@ export function createForm() {
     const reasonsData = formData.flat(1).find((field) => field.key === 'reason')
 
     const reasonFieldset = createReasonFieldset(reasonsData)
-    appendToForm([...createTitle(), ...formFirstPart, reasonFieldset])
+    appendToForm([...formFirstPart, reasonFieldset])
 }

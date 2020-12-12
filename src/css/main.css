@@ -190,7 +190,7 @@ p {
     .form-control:focus {
         background: #333;
         color: white;
-        border: 1px solid white;
+        border: 1px solid #444;
     }
 
     .form-control:focus {
@@ -370,9 +370,6 @@ header {
     font-weight: bold;
     color: white;
     border-radius: 0.5em;
-
-    opacity: 0;
-    transition: opacity 0.1s;
 }
 
 .btn-clear-data {
@@ -563,8 +560,8 @@ em {
     border-color: #030494;
 }
 
-.fieldset .legend {
-    padding: 1em 0;
+.fieldset {
+    padding-top: 2em;
 }
 
 .fieldset .form-checkbox {
