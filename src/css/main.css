@@ -1,18 +1,3 @@
-@font-face {
-    font-family: 'marianne-bold';
-    src: url('../fonts/marianne-bold-webfont.woff2') format('woff2'),
-        url('../fonts/marianne-bold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'marianne-regular';
-    src: url('../fonts/marianne-regular-webfont.woff2') format('woff2'),
-        url('../fonts/marianne-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 
 html {
     background: white;
@@ -291,7 +276,6 @@ header {
     display: flex;
     align-items: center;
     padding: 0.3em;
-    font-family: 'marianne-regular', Arial, Helvetica, sans-serif;
     font-size: 0.5em;
     width: 100%;
     color: #ffffff;
